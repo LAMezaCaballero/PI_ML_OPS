@@ -64,7 +64,7 @@ def UsersRecommend( ano : int ):
     elif df_ano.size <4:
          return {"Puesto 1" :df_ano['item_name'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
     else:
-        return print([{"Puesto 1" : df_ano['developer'].iloc[0]}, {"Puesto 2" : df_ano['developer'].iloc[1]},{"Puesto 3" : "no hay"}
+        return {"Puesto 1" : df_ano['developer'].iloc[0]}, {"Puesto 2" : df_ano['developer'].iloc[1]},{"Puesto 3" : "no hay"}
     
     
 #T4 UsersWorstDeveloper
@@ -79,7 +79,7 @@ def UsersWorstDeveloper(año : int):
     elif df_ano.size <4:
          return {"Puesto 1" :df_ano['developer'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
     else:
-        return print([{"Puesto 1" : df_ano['developer'].iloc[0]}, {"Puesto 2" : df_ano['developer'].iloc[1]},{"Puesto 3" : "no hay"}
+        return {"Puesto 1" : df_ano['developer'].iloc[0]}, {"Puesto 2" : df_ano['developer'].iloc[1]},{"Puesto 3" : "no hay"}
    
     
     
