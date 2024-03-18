@@ -74,10 +74,13 @@ def UsersWorstDeveloper(año : int):
     df_ano2 = df_4[df_4['release_date']==año]
     #df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
 
-    p1=df_ano2['developer'].iloc[0]
-    p2= df_ano2['developer'].iloc[1]
-    p3=df_ano2['developer'].iloc[2]
-    return {"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
+      if df_ano.size ==9:
+        return {"Puesto 1" :df_ano['developer'].iloc[0] , "Puesto 2" : df_ano['developer'].iloc[1],"Puesto 3" : df_ano['developer'].iloc[2]}
+    elif df_ano.size <4:
+         return {"Puesto 1" :df_ano['developer'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
+    else:
+        return print([{"Puesto 1" : df_ano['developer'].iloc[0]}, {"Puesto 2" : df_ano['developer'].iloc[1]},{"Puesto 3" : "no hay"}
+   
     
     
 
