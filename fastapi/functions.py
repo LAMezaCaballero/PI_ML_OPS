@@ -72,7 +72,7 @@ df_4 = pd.read_parquet(r'./Data/UsersRecommenT4.parquet')#T4
 def UsersWorstDeveloper(año : int):
     
     df_ano2 = df_4[df_4['release_date']==año]
-    #df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
+    df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
 
     if df_ano.size ==9:
         return {"Puesto 1" :df_ano['developer'].iloc[0] , "Puesto 2" : df_ano['developer'].iloc[1],"Puesto 3" : df_ano['developer'].iloc[2]}
