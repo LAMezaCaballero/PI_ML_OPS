@@ -59,12 +59,14 @@ def UsersRecommend( ano : int ):
     ## extraer los datos del ano
     df_ano= df_3[df_3['release_date']==ano]
     df_ano.to_dict(orient='records') # convertir en dictionary para ser usado en json
-
-    p1=df_ano['item_name'].iloc[0]
-    p2= df_ano['item_name'].iloc[1]
-    p3=df_ano['item_name'].iloc[2]
-    return {"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
-
+    if df_ano.size ==9:
+        return {"Puesto 1" :df_ano['item_name'].iloc[0] , "Puesto 2" : df_ano['item_name'].iloc[1],"Puesto 3" : df_ano['item_name'].iloc[2]}
+    elif df_ano.size <4:
+         return {"Puesto 1" :df_ano['item_name'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
+    else:
+        return print([{"Puesto 1" : df_ano['developer'].iloc[0]}, {"Puesto 2" : df_ano['developer'].iloc[1]},{"Puesto 3" : "no hay"}
+    
+    
 #T4 UsersWorstDeveloper
 df_4 = pd.read_parquet(r'./Data/UsersRecommenT4.parquet')#T4  
 def UsersWorstDeveloper(año : int): 
