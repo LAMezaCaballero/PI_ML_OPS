@@ -51,33 +51,38 @@ def UserForGenre( genero : str ):
 #T3  UsersRecommend
 def UsersRecommend( ano : int ): 
     
-    ######verificar que este el año pedido ente los datos
-    '''
-    if year not in df_3['release_date'].unique() or type(year) != int :
-        raise ValueError(f"El género '{year}' no se encuentra en la base de datos favor de verificarlo.")
-    '''
     ## extraer los datos del ano
     df_ano= df_3[df_3['release_date']==ano]
-    df_ano.to_dict(orient='records') # convertir en dictionary para ser usado en json
-
-    p1=df_ano['item_name'].iloc[0]
-    p2= df_ano.get(['item_name']).iloc[1]
-    p3=df_ano.get(['item_name']).iloc[2]
+    
+    
+    nueva_fila = pd.DataFrame([{'release_date': ano, 'item_name': 'no hay'}])
+    if df_ano.shape[0] < 3:
+        df_ano = pd.concat([df_ano,nueva_fila],ignore_index=True)
+    if df_ano.shape[0] < 3:
+        df_ano = pd.concat([df_ano,nueva_fila],ignore_index=True)
+    if df_ano.shape[0] < 3:
+        df_ano = pd.concat([df_ano,nueva_fila],ignore_index=True)
+    
+    df_ano = df_ano.to_dict(orient='records') # convertir en dictionary para ser usado en json
+    p1=df_ano[0]['item_name']
+    p2= df_ano[1]['item_name']
+    p3=df_ano[2]['item_name']
     return {"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
-
     
         
 #T4 UsersWorstDeveloper
-df_4 = pd.read_parquet(r'./Data/UsersRecommenT4.parquet')#T4  
 def UsersWorstDeveloper(año : int):
     df_ano2 = df_4[df_4['release_date']==año]
-    df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
-    
+     
     nueva_fila = pd.DataFrame([{'release_date': año, 'developer': 'no hay'}])
     if df_ano2.shape[0] < 3:
-        df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True)
+        df_ano2 = pd.concat([df_ano2,nueva_fila],ignore_index=True)
     if df_ano2.shape[0] < 3:
-        df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True)
+        df_ano2 = pd.concat([df_ano2,nueva_fila],ignore_index=True)
+    if df_ano2.shape[0] < 3:
+        df_ano2 = pd.concat([df_ano2,nueva_fila],ignore_index=True)    
+    
+    df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
     p1=df_ano2['developer'].iloc[0]
     p2=df_ano2['developer'].iloc[1]
     p3= df_ano2['developer'].iloc[2]
