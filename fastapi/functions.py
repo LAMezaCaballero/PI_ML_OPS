@@ -75,7 +75,7 @@ def UsersRecommend( ano : int ):
     p1=df_ano['item_name'].iloc[0]
     p2= df_ano.get(['item_name']).iloc[1]
     p3=df_ano.get(['item_name']).iloc[2]
-    return {"size": df_ano2.size ,"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
+    return {"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
     
         
 #T4 UsersWorstDeveloper
@@ -85,10 +85,12 @@ def UsersWorstDeveloper(año : int):
     df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
     
     nueva_fila = pd.DataFrame([{'release_date': año, 'developer': 'no hay'}])
-    While df_ano2.shape[0] < 3:
+    if df_ano2.shape[0] < 3:
         df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True)
+    if df_ano2.shape[0] < 3:
+        df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True
     
-    return {"size": df_ano2.shape[0] ,"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
+    return {"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
     
     
 
