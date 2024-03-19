@@ -59,11 +59,11 @@ def UsersRecommend( ano : int ):
     ## extraer los datos del ano
     df_ano= df_3[df_3['release_date']==ano]
     df_ano.to_dict(orient='records') # convertir en dictionary para ser usado en json
-    if df_ano.size ==9:
+    if df_ano.size >8:
         p1=df_ano['item_name'].iloc[0]
         p2= df_ano.get(['item_name']).iloc[1]
         p3=df_ano.get(['item_name']).iloc[2]
-    elif df_ano.size <4:
+    elif df_ano.size <4 :
         p1=df_ano['item_name'].iloc[0]
         p2= "no hay"
         p3= "no hay"
@@ -85,7 +85,7 @@ def UsersWorstDeveloper(año : int):
     df_ano2 = df_4[df_4['release_date']==año]
     df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
 
-    if df_ano2.size ==9:
+    if df_ano2.size >7:
         return {"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
     elif df_ano2.size <4:
          return {"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
