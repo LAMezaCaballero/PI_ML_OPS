@@ -58,7 +58,7 @@ def UsersRecommend( ano : int ):
     '''
     ## extraer los datos del ano
     df_ano= df_3[df_3['release_date']==ano]
-    #df_ano.to_dict(orient='records') # convertir en dictionary para ser usado en json
+    df_ano.to_dict(orient='records') # convertir en dictionary para ser usado en json
     if df_ano.size ==9:
         return {"Puesto 1" :df_ano['item_name'].iloc[0] , "Puesto 2" : df_ano['item_name'].iloc[1],"Puesto 3" : df_ano['item_name'].iloc[2]}
     elif df_ano.size <4:
