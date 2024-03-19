@@ -73,14 +73,59 @@ Para la tercer consigna se extraen las columnas (item_name,	release_date,	item_i
 ## transformacion 
 Se crea una tabla de datos para cada consigna, mezclando las tablas limpias del paso de extraccion.
 ### archivo 'PlayTimeGenre.ipynb'
-1. se cargan los archivos json nombrados Clean_DataGames y Clean_Players.
+1. se cargan los archivos json nombrados Clean_DataGames.json y Clean_Players.json.
 2. Se mezclan mediante la columna 'item_id'.
 3. Un nuevo DF donde la mezcla se le agrupa por 'genres', 'release_date' y se suman los valores de playtime_forever.
 4. se guarda este nuevo DF como 'Data_playtimegender.parquet' para mejorar la carga del api.
-5. Se crea la funcion para la consigna de obtener el Año de lanzamiento con más horas jugadas para Género elegido.
+5. Se crea el prototipo de funcion para la consigna de obtener el Año de lanzamiento con más horas jugadas para Género elegido.
+
+### archivo 'UserForGender.ipynb'
+se cargan los archivos json nombrados Clean_DataGames.json y Clean_Players_T2.json.
+1. Se mezclan mediante la columna 'item_id'.
+2. Se eliminan las columnas innecesarias 'item_id',	'developer'.
+3. Convertir a mayusculas los valores de 'user_id'. 
+4. Se crea el prototipo de funcion para la consigna de obtener al "Usuario con más horas jugadas para Género " ,genero elegido,' y las "Horas jugadas:" por cada año.
 
 
-   
+### archivo 'UsersRecommend.ipynb'
+se cargan los archivos json nombrados Clean_DataGames_T3.json y Clean_GamesRev.json.
+1. Se mezclan mediante iguales.
+2. Se crea la funcion 'analyze_sentiment' para analizar los comentarios  usando variables con un listado de palabras clave para saber si es un comentario positivo y otra para para identificar los comentarios negativos y dar un resultado en valor int.
+3. Se agrega la columna 'sentiment_analysis' llenadola con el resultado de aplicar la funcion 'analyze_sentiment' en los valores de la columna 'review'.
+4. Se analiza cual es el idioma en el que estan escritos los comentarios para identificar el mas reelevante. english 39016
+5. Se agrega 1 punto al 'sentiment_analysis' si ['recommend'] == True, y se quita 1 punto si es False.
+6. Se crea la tabla 'Clean_GamesRevT5.json' que sera usada en T5sentimen_analysis.ipynb
+7. Se agrupa ['item_id','item_name','release_date'] y se suman los valores de['sentiment_analysis'] en un dataframe.
+8. Se separa los ['sentiment_analysis'] los positivos en un dataframe df_t3.
+9. Se separa los ['sentiment_analysis'] los negativos en un dataframe df_t4 y se guarda como 'UsersRecommendNeg.parquet'
+10. El df_t3 es ordenado en descendente por los valores de 'release_date', 'sentiment_analysis'.
+11. Se guardan los valores de las columnas item_name	release_date de "df_t3" en "top_3_per_year".
+12. DataFrame "top_3_per_year"  se guarda como 'UsersRecommend.parquet'
+13. Se crea el prototipo de funcion para la consigna del top 3 de juegos MÁS recomendados por usuarios para el año dado.
+
+### archivo 'UserWorstDeveloper.ipynb'
+1. Se carga 'UsersRecommendNeg.parquet' en un dataframe 'd_Reviews'
+2. Se carga 'Clean_DataGames.json' y extrae ['item_id', 'developer'] en un dataframe 'D_dev'
+3. Se mezclan(merge) por la columna de 'item_id'
+4. Se agrupan por el top3 de'release_date'. y se ordenan 'release_date', 'sentiment_analysis' en descenso en el dataframe "top_3_per_year".
+5. A "top_3_per_year" se elimina la columna 'sentiment_analysis'.
+6. Se guarda la base de datos como 'UsersRecommenT4.parquet'.
+7. Se crea el prototipo de funcion para la consigna de el top 3 de desarrolladoras con juegos MENOS recomendados por usuarios para el año dado.
+
+### archivo 'sentiment_analysis.ipynb'
+1. Se carga 'Clean_DataGames.json' y extrae ['item_id', 'developer'] en un dataframe 'D_dev'
+2. Se carga 'Clean_GamesRevT5.json' en un dataframe 'df_rev'
+3. Se crea una funcion 'categorize_sentiment' para categorizar si el comentario es positivo, negativo o neutro y agregarle un +1 a la columna de la categoria correspondiente.
+4. Se aplica la funcion 'categorize_sentiment' en  df_rev.
+5. Se eliminan las columanas de 'item_name','release_date','sentiment_analysis' de df_rev.
+6. Se mezclan las columnas de df_dev, df_rev, por medio de la columna 'item_id'.
+7. Se agrupa por 'developer' y se suman los valores de las columnas positivo	neutro	negativo
+8. De esta tabla se tira la columna de item_id
+9. Se guarda como 'sentiment_analysis.parquet'.
+10. Se crea el prototipo de funcion para la consigna de el registro del sentiment analysis para un desarrollador.
+
+
+ 
 
 
 
