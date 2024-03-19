@@ -43,8 +43,8 @@ def UserForGenre( genero : str ):
     
     
     acumulado_por_usuario_fecha = df_action.groupby(['user_id', 'release_date'])['playtime_forever'].sum()
-    
-    dic= {'Usuario con más horas jugadas para Género {genero}' : usuariomax, "Horas jugadas: ": acumulado_por_usuario_fecha[usuariomax].to_dict()}
+    keynames = f'Usuario con más horas jugadas para Género {genero}'
+    dic= {keynames : usuariomax, "Horas jugadas: ": acumulado_por_usuario_fecha[usuariomax].to_dict()}
 
     return dic
     
