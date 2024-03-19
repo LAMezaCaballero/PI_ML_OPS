@@ -23,7 +23,7 @@ def PlayTimeGenre( genero : str ):
     # Encontrar el año con el mayor valor acumulado de playtime_forever
     df_query=df_query.sort_values(by='playtime_forever', ascending=False)
     resultado = df_query['release_date'].iloc[0]
-    keyname= f'{Año} de lanzamiento con más horas jugadas para Género {genero}'
+    keyname= f'Año de lanzamiento con más horas jugadas para Género {genero}'
     dic = {keyname : resultado.tolist()}
     return dic
 
