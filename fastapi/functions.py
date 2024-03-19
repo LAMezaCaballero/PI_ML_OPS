@@ -81,17 +81,14 @@ def UsersRecommend( ano : int ):
 #T4 UsersWorstDeveloper
 df_4 = pd.read_parquet(r'./Data/UsersRecommenT4.parquet')#T4  
 def UsersWorstDeveloper(año : int):
-    
     df_ano2 = df_4[df_4['release_date']==año]
     df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
-
-    if df_ano2.size >7:
-        return {"size": df_ano2.size ,"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
-    elif df_ano2.size <4:
-         return {"size": df_ano2.size ,"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
-    else:
-        return {"size": df_ano2.size ,"Puesto 1" : df_ano2['developer'].iloc[0]}, "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : "no hay"}
-   
+    
+    nueva_fila = pd.DataFrame([{'release_date': año, 'developer': 'no hay'}])
+    While df_ano2.size < 9:
+        df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True)
+    
+    return {"size": df_ano2.size ,"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
     
     
 
