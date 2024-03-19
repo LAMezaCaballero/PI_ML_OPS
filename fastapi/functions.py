@@ -59,19 +59,7 @@ def UsersRecommend( ano : int ):
     ## extraer los datos del ano
     df_ano= df_3[df_3['release_date']==ano]
     df_ano.to_dict(orient='records') # convertir en dictionary para ser usado en json
-    '''if df_ano.size >8:
-        p1=df_ano['item_name'].iloc[0]
-        p2= df_ano.get(['item_name']).iloc[1]
-        p3=df_ano.get(['item_name']).iloc[2]
-    elif df_ano.size <4 :
-        p1=df_ano['item_name'].iloc[0]
-        p2= "no hay"
-        p3= "no hay"
-    else:
-        p1=df_ano['item_name'].iloc[0]
-        p2= df_ano.get(['item_name']).iloc[1]
-        p3= "no hay"
-    '''
+
     p1=df_ano['item_name'].iloc[0]
     p2= df_ano.get(['item_name']).iloc[1]
     p3=df_ano.get(['item_name']).iloc[2]
@@ -88,9 +76,11 @@ def UsersWorstDeveloper(año : int):
     if df_ano2.shape[0] < 3:
         df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True)
     if df_ano2.shape[0] < 3:
-        df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True
-    
-    return {"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
+        df_ano2 = pd.concat(df_ano2,nueva_fila,ignore_index=True)
+    p1=df_ano2['developer'].iloc[0]
+    p2=df_ano2['developer'].iloc[1]
+    p3= df_ano2['developer'].iloc[2]
+    return {"Puesto 1" : p1 , "Puesto 2" : p2,"Puesto 3" :p3}, df_ano2
     
     
 
