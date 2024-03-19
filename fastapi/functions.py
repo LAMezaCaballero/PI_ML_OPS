@@ -64,6 +64,7 @@ def UsersRecommend( ano : int ):
     p2= df_ano.get(['item_name']).iloc[1]
     p3=df_ano.get(['item_name']).iloc[2]
     return {"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
+
     
         
 #T4 UsersWorstDeveloper
@@ -80,7 +81,7 @@ def UsersWorstDeveloper(año : int):
     p1=df_ano2['developer'].iloc[0]
     p2=df_ano2['developer'].iloc[1]
     p3= df_ano2['developer'].iloc[2]
-    return {"Puesto 1" : p1 , "Puesto 2" : p2,"Puesto 3" :p3}, df_ano2
+    return {"Puesto 1" : p1 , "Puesto 2" : p2,"Puesto 3" :p3}
     
     
 
