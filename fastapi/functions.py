@@ -69,7 +69,7 @@ def UsersRecommend( ano : int ):
         p3= "no hay"
     else:
         p1=df_ano['item_name'].iloc[0]
-        p2= "no hay"
+        p2= df_ano.get(['item_name']).iloc[1]
         p3= "no hay"
     return {"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
     
