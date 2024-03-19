@@ -75,7 +75,7 @@ def UsersRecommend( ano : int ):
     p1=df_ano['item_name'].iloc[0]
     p2= df_ano.get(['item_name']).iloc[1]
     p3=df_ano.get(['item_name']).iloc[2]
-    return {"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
+    return {"size": df_ano2.size ,"Puesto 1" :p1 , "Puesto 2" : p2,"Puesto 3" : p3}
     
         
 #T4 UsersWorstDeveloper
@@ -86,11 +86,11 @@ def UsersWorstDeveloper(año : int):
     df_ano2.to_dict(orient='records') # convertir en dictionary para ser usado en json
 
     if df_ano2.size >7:
-        return {"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
+        return {"size": df_ano2.size ,"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : df_ano2['developer'].iloc[2]}
     elif df_ano2.size <4:
-         return {"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
+         return {"size": df_ano2.size ,"Puesto 1" :df_ano2['developer'].iloc[0] , "Puesto 2" : "no hay","Puesto 3" :  "no hay"}
     else:
-        return {"Puesto 1" : df_ano2['developer'].iloc[0]}, "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : "no hay"}
+        return {"size": df_ano2.size ,"Puesto 1" : df_ano2['developer'].iloc[0]}, "Puesto 2" : df_ano2['developer'].iloc[1],"Puesto 3" : "no hay"}
    
     
     
