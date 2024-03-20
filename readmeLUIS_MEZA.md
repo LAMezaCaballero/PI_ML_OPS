@@ -6,10 +6,10 @@ El proyecto se trata de trabajar con los datos que nos proporciona el cliente, S
 Para ver el codigo y proceso del ETL de los datos crudos y las funciones de las consignas para los primeros 5 outputs:
 https://github.com/LAMezaCaballero/PI_ML_OPS/tree/etl
 
-Para ver el codigo del fastapi:
+Para ver el codigo del fastapi y el ML de sugerencia item-item:
 https://github.com/LAMezaCaballero/PI_ML_OPS/tree/fastapi_5outputs
 
-Para ver el codigo del M.L. :
+
 
 Para ver el video explicando como funciona la api ya deployed:
 https://drive.google.com/drive/folders/1ESimFZNw3T5xBGGFWyuCf-saG_7l6msN?usp=sharing
