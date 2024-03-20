@@ -1,13 +1,14 @@
     #importar libreria
 import pandas as pd
 import os
+from sklearn.metrics.pairwise import cosine_similarity
 #cargo de datos
 df_1 = pd.read_parquet(r'./Data/Data_playtimegender.parquet')#T1
 df_2= pd.read_parquet(r'./Data/UserForGender.parquet')#t2
 df_3= pd.read_parquet(r'./Data/UsersRecommend.parquet')#T3
 df_4 = pd.read_parquet(r'./Data/UsersRecommenT4.parquet')#T4 
 df_master= pd.read_parquet(r'./Data/sentiment_analysis.parquet')#T5
-
+df_6 = pd.read_parquet(r'./Data/recomendacion_juego.parquet')
 #T1 UserForGender
 
 def PlayTimeGenre( genero : str ):
@@ -105,4 +106,24 @@ def sentiment_analysis( empresa_desarrolladora : str ):
 
     dicc ={empresa_desarrolladora: {'Negative': int(dev['negativo'].iloc[0]), 'Neutral= ': int(dev['neutro'].iloc[0]), 'Positive=': int(dev['positivo'].iloc[0])}}
     return dicc
+
+#T6 ML recomendacion item-item
+
+def recomendacion_juego( id_de_producto : int): 
+        
+    # Filtrar el DataFrame para obtener solo las filas correspondientes al item_id de consulta
+    consulta = df_6[df_6['item_id'] == id_de_producto].iloc[:, 2:]
+
+    # Calcular la similitud de coseno entre el item de consulta y todos los demás items
+    similaridades = cosine_similarity(consulta, df_6.iloc[:, 2:])
+
+    # Obtener los índices de los items más similares (excepto el item de consulta)
+    indices_mas_similares = similaridades.argsort(axis=1)[0][-6:-1]
+
+    # Obtener los nombres de los items más similares
+    nombres_mas_similares = df_6.loc[indices_mas_similares, 'item_name']
+
+    llave= f"Los 5 item_name más similares al item_id {id_de_producto}son:"
+    # Mostrar los nombres de los items más similares
+    return {llave : nombres_mas_similares.tolist()}
   
