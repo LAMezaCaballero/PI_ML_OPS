@@ -125,7 +125,13 @@ se cargan los archivos json nombrados Clean_DataGames_T3.json y Clean_GamesRev.j
 10. Se crea el prototipo de funcion para la consigna de el registro del sentiment analysis para un desarrollador.
 
 
- 
+### archivo recomendacion_juego.ipynb
+1. Filtrar el DataFrame para obtener solo las filas correspondientes al item_id de consulta
+2. Calcular la similitud de coseno entre el item de consulta y todos los demás items
+3. Obtener los índices de los items más similares (excepto el item de consulta)
+4. Obtener los nombres de los items más similares
+5. crear la llave para el diccionario
+6. Mostrar los nombres de los items más similares
 
 
 
