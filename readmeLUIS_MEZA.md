@@ -13,3 +13,6 @@ https://github.com/LAMezaCaballero/PI_ML_OPS/tree/fastapi_5outputs
 
 Para ver el video explicando como funciona la api ya deployed:
 https://drive.google.com/drive/folders/1ESimFZNw3T5xBGGFWyuCf-saG_7l6msN?usp=sharing
+
+el api ya funcional y renderizado:
+https://pi-ml-ops-outputs.onrender.com
