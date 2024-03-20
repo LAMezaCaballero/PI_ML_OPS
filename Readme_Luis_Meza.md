@@ -11,6 +11,7 @@ contiene las versiones de los modulos a usar
 * pyarrow == 15.0.0
 * fastparquet==2024.2.0
 * gunicorn== 21.2.0
+* scikit-learn == 1.4.1.post1
 
 ## el archivo functions.py:
 * Contiene las funciones a usar en los routers.
@@ -20,6 +21,7 @@ contiene las versiones de los modulos a usar
 3. df_3= pd.read_parquet(r'./Data/UsersRecommend.parquet')#T3
 4. df_4 = pd.read_parquet(r'./Data/UsersRecommenT4.parquet')#T4 
 5. df_master= pd.read_parquet(r'./Data/sentiment_analysis.parquet')#T5
+6. df_6 = pd.read_parquet(r'./Data/recomendacion_juego.parquet')#T6
 
 ### def PlayTimeGenre( genero : str ):
 1. se recibe un texto
@@ -59,6 +61,14 @@ contiene las versiones de los modulos a usar
 3. se extrae la parte del 'developer' elegido del 'df_master'
 4. se retorna un diccionario como resultado
 
+### def recomendacion_juego( id_de_producto : int): 
+1. Filtrar el DataFrame para obtener solo las filas correspondientes al id_de_producto de consulta
+2. Calcular la similitud de coseno entre el item de consulta y todos los demás items
+3. Obtener los índices de los items más similares (excepto el item de consulta)
+4. Obtener los nombres de los items más similares
+5. crear la llave para el diccionario
+6. retornar  los nombres de los items más similares como lista dentro de un diccionario.
+    
 
 # Carpeta de data:
 se encuentran 5 archivos que son la base de datos para cada funcion:
@@ -67,14 +77,16 @@ se encuentran 5 archivos que son la base de datos para cada funcion:
 3. UsersRecommend.parquet
 4. UsersRecommenT4.parquet
 5. sentiment_analysis.parquet
+6. recomendacion_juego.parquet
 
 # Carpeta routers:
 ## archivo my_modules.py:
-1. se importan las librerias  APIRouter,JSONResponse,pandas   y las funciones de PlayTimeGenre, UserForGenre, UsersRecommend, UsersWorstDeveloper, sentiment_analysis.
+1. se importan las librerias  APIRouter,JSONResponse,pandas   y las funciones de PlayTimeGenre, UserForGenre, UsersRecommend, UsersWorstDeveloper, sentiment_analysis, recomendacion_juego.
 2. se declaran los routers del 1 al 5:
     1. router1 = APIRouter() para  la funcion PlayTimeGenre
     2. router2 = APIRouter() para  la funcion UserForGenre
     3. router3 = APIRouter() para  la funcion UsersRecommen
     4. router4 = APIRouter() para  la funcion UsersWorstDeveloper
     5. router5 = APIRouter() para  la funcion sentiment_analysis
+    6. router6 = APIRouter() para  la funcion recomendacion_juego
   
