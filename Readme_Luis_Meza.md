@@ -21,14 +21,14 @@ contiene las versiones de los modulos a usar
 4. df_4 = pd.read_parquet(r'./Data/UsersRecommenT4.parquet')#T4 
 5. df_master= pd.read_parquet(r'./Data/sentiment_analysis.parquet')#T5
 
-# def PlayTimeGenre( genero : str ):
+### def PlayTimeGenre( genero : str ):
 1. se recibe un texto
 2. para evitar errores de mayusculas, todo se hizo mayusculas
 3. se extrae la parte del genero elegido del df_1
 4. Encontrar el año con el mayor valor acumulado de playtime_forever
 5. se retorna un diccionario como resultado
 
-# def UserForGenre( genero : str ):
+### def UserForGenre( genero : str ):
 1. se recibe un texto
 2. para evitar errores de mayusculas, todo se hizo mayusculas
 3. se extrae la parte del genero elegido del df_2
@@ -37,7 +37,7 @@ contiene las versiones de los modulos a usar
 6. se crea una variable para el la key del diccionario.
 7. se retorna un diccionario como resultado indicando el usuario y las horas por año.
 
-# def UsersRecommend( ano : int ):
+### def UsersRecommend( ano : int ):
 1. se recibe un integral
 2. se extrae la parte del año elegido del df_3 a un dataframe 'df_ano'.
 3. se complementa con lineas vacias si el dataframe 'df_ano' no contiene 3 lineas.
@@ -45,7 +45,7 @@ contiene las versiones de los modulos a usar
 5. se extrae el nombre de los  primeros 3 puestos de 'item_name' en df_ano en variables individuales
 6. se retorna un diccionario con los 3 puestos y sus respectivos 'item_name'
 
-# def UsersWorstDeveloper(año : int):
+### def UsersWorstDeveloper(año : int):
 1. se recibe un integral
 2. se extrae la parte del año elegido del df_3 a un dataframe 'df_ano2'.
 3. se complementa con lineas vacias si el dataframe 'df_ano' no contiene 3 lineas.
@@ -53,10 +53,28 @@ contiene las versiones de los modulos a usar
 5. se extrae el nombre de los  primeros 3 puestos de 'developer' en df_ano en variables individuales
 6. se retorna un diccionario con los 3 puestos y sus respectivos 'developer'
 
-# def sentiment_analysis( empresa_desarrolladora : str ): 
+### def sentiment_analysis( empresa_desarrolladora : str ): 
 1. se recibe un texto
 2. para evitar errores de mayusculas, todo se hizo mayusculas
 3. se extrae la parte del 'developer' elegido del 'df_master'
 4. se retorna un diccionario como resultado
 
 
+# Carpeta de data:
+se encuentran 5 archivos que son la base de datos para cada funcion:
+1. Data_playtimegender.parquet
+2. UserForGender.parquet
+3. UsersRecommend.parquet
+4. UsersRecommenT4.parquet
+5. sentiment_analysis.parquet
+
+# Carpeta routers:
+## archivo my_modules.py:
+1. se importan las librerias  APIRouter,JSONResponse,pandas   y las funciones de PlayTimeGenre, UserForGenre, UsersRecommend, UsersWorstDeveloper, sentiment_analysis.
+2. se declaran los routers del 1 al 5:
+    1. router1 = APIRouter() para  la funcion PlayTimeGenre
+    2. router2 = APIRouter() para  la funcion UserForGenre
+    3. router3 = APIRouter() para  la funcion UsersRecommen
+    4. router4 = APIRouter() para  la funcion UsersWorstDeveloper
+    5. router5 = APIRouter() para  la funcion sentiment_analysis
+  
